@@ -1,0 +1,17 @@
+#define M64_CONTROLLER1_BUTTONS_HOLD  (*(short*)0x8033AFA0)
+#define M64_CONTROLLER1_BUTTONS_PRESS (*(short*)0x8033AFA2)
+
+#define BUTTON_CRIGHT   0x01
+#define BUTTON_CLEFT    0x02
+#define BUTTON_CDOWN    0x04
+#define BUTTON_CUP 	    0x08
+#define BUTTON_R 		0x10
+#define BUTTON_L 		0x20
+#define BUTTON_DRIGHT   0x100
+#define BUTTON_DLEFT 	0x200
+#define BUTTON_DDOWN 	0x400
+#define BUTTON_DUP 	    0x800
+#define BUTTON_START 	0x1000
+#define BUTTON_Z 		0x2000
+#define BUTTON_B 		0x4000
+#define BUTTON_A 		0x8000
