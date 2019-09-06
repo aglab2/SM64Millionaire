@@ -1,0 +1,27 @@
+0 C  0,1
+1 C  2,3
+2 C  4,5
+3 D  0,1 4,5
+4 D  2,3
+epicwin  E 0
+final    E 1
+letsplay E 2
+lose     E 3
+win      E 4
+
+powerofstars = 5050
+audience F 0,1
+await F 2
+timeout 10 0,1
+
+0.0254
+
+0002
+7FBC
+0001
+7FBC
+
+7FBC
+72F6
+FFFF
+0000

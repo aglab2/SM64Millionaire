@@ -1,0 +1,206 @@
+22 08 00 01 17 00 2D D4
+3835380 = 04035380
+geo1=38354B0=040354B0
+
+model1 3835700=04035700
+DL-Pointer:	04035FE0 (Solid)
+color=04035FE8
+
+model2 38360D0=040360D0
+DL-Pointer:	040369B0 (Solid)
+color=040369B8
+
+model3 3836AA0=04036AA0
+DL-Pointer:	04037380 (Solid)
+color=04037388
+
+model4 3837470=04037470
+DL-Pointer:	04037D50 (Solid)
+color=04037D58
+
+
+
+curtain 3837E40=04037E40
+DL-Pointer:	04039FF0 (Solid)
+DL-Pointer:	0403A0C8 (Alpha)
+
+
+
+model5050 383A1B0=0403A1B0
+DL-Pointer:	0403AAB0 (Solid)
+color=0403AAB8
+
+modelaudience 383ABB0=0403ABB0
+DL-Pointer:	0403B4B0 (Solid)
+color=0403B4B8
+
+modelphone 383B5B0=0403B5B0
+DL-Pointer:	0403BEB0 (Solid)
+color=0403BEB8
+
+
+
+flashy 383BFB0=0403BFB0
+DL-Pointer:	0403C960 (Solid)
+
+w1 383CAA0=0403CAA0
+DL-Pointer:	0403F6D0 (Solid)
+color=0403F6D8
+
+w2 383FF10=0403FF10
+DL-Pointer:	04042B40 (Solid)
+color=04042B48
+
+w3 3843380=04043380
+DL-Pointer:	04045FB0 (Solid)
+color=04045FB8
+
+w4 38467F0=040467F0
+DL-Pointer:	04049420 (Solid)
+color=04049428
+
+A 384A000=0404A000
+DL-Pointer:	0404A2C0 (Solid)
+DL-Pointer:	404AB40 (Solid)
+B 384B000=0404B000
+DL-Pointer:	0404B3D0 (Solid)
+DL-Pointer:	404BC40 (Solid)
+C 384C000=0404C000
+DL-Pointer:	0404C370 (Solid)
+DL-Pointer:	404CB60 (Solid)
+D 384D000=0404D000
+DL-Pointer:	0404D240 (Solid)
+DL-Pointer:	404DC50 (Solid)
+E 384E000=0404E000
+DL-Pointer:	0404E360 (Solid)
+DL-Pointer:	404EC50 (Solid)
+F 384F000=0404F000
+DL-Pointer:	0404F2C0 (Solid)
+DL-Pointer:	404FC40 (Solid)
+G 3850000=04050000
+DL-Pointer:	04050560 (Solid)
+DL-Pointer:	4064EA0 (Solid)
+H 3851000=04051000
+DL-Pointer:	04051350 (Solid)
+DL-Pointer:	4051B60 (Solid)
+I 3852000=04052000
+DL-Pointer:	04052130 (Solid)
+DL-Pointer:	4052A50 (Solid)
+J 3853000=04053000
+DL-Pointer:	04053420 (Solid)
+DL-Pointer:	4053AE0 (Solid)
+K 3854000=04054000
+DL-Pointer:	04054320 (Solid)
+DL-Pointer:	4054B10 (Solid)
+L 3855000=04055000
+DL-Pointer:	040551C0 (Solid)
+DL-Pointer:	40559D0 (Solid)
+M 3856000=04056000
+DL-Pointer:	040562B0 (Solid)
+DL-Pointer:	4056AB0 (Solid)
+N 3857000=04057000
+DL-Pointer:	04057250 (Solid)
+DL-Pointer:	4057B60 (Solid)
+O 3858000=04058000
+DL-Pointer:	04058280 (Solid)
+DL-Pointer:	4058B60 (Solid)
+P 3859000=04059000
+DL-Pointer:	040592F0 (Solid)
+DL-Pointer:	4059B80 (Solid)
+Q 385A000=0405A000
+DL-Pointer:	0405A390 (Solid)
+DL-Pointer:	405AB70 (Solid)
+R 385B000=0405B000
+DL-Pointer:	0405B350 (Solid)
+DL-Pointer:	405BAD0 (Solid)
+S 385C000=0405C000
+DL-Pointer:	0405C3F0 (Solid)
+DL-Pointer:	405CC00 (Solid)
+T 385D000=0405D000
+DL-Pointer:	0405D260 (Solid)
+DL-Pointer:	405DC10 (Solid)
+U 385E000=0405E000
+DL-Pointer:	0405E2D0 (Solid)
+DL-Pointer:	405EB70 (Solid)
+V 385F000=0405F000
+DL-Pointer:	0405F1B0 (Solid)
+DL-Pointer:	405F9B0 (Solid)
+W 3860000=04060000
+DL-Pointer:	04060330 (Solid)
+DL-Pointer:	4060B30 (Solid)
+X 3861000=04061000
+DL-Pointer:	04061370 (Solid)
+DL-Pointer:	4061B70 (Solid)
+Y 3862000=04062000
+DL-Pointer:	04062290 (Solid)
+DL-Pointer:	4062A50 (Solid)
+Z 3863000=04063000
+DL-Pointer:	04063290 (Solid)
+DL-Pointer:	4063AC0 (Solid)
+
+? 3864000=04064000
+DL-Pointer:	040644C0 (Solid)
+
+' 3865200=04065200
+DL-Pointer:	40653B0 (Solid)
+@ 3865800=04065800
+DL-Pointer:	4066050 (Solid)
+- 3866800=04066800
+DL-Pointer:	4066940 (Solid)
+= 3867000=04067000
+DL-Pointer:	4067250 (Solid)
+! 3867800=04067800
+DL-Pointer:	4067B00 (Solid)
+# 3868000=04068000
+DL-Pointer:	4068950 (Solid)
+< 3869000=04069000
+DL-Pointer:	4069260 (Solid)
+> 3869800=04069800
+DL-Pointer:	4069A60 (Solid)
+( 386A000=0406A000
+DL-Pointer:	406A2C0 (Solid)
+) 386A800=0406A800
+DL-Pointer:	406AAE0 (Solid)
+% 386B000=0406B000
+DL-Pointer:	406B4D0 (Solid)
+. 386B900=0406B900
+DL-Pointer:	406BA80 (Solid)
++ 386C000=0406C000
+DL-Pointer:	406C330 (Solid)
+" 386C800=0406C800
+DL-Pointer:	406CB70 (Solid)
+; 386D000=0406D000
+DL-Pointer:	406D300 (Solid)
+/ 386D800=0406D800
+DL-Pointer:	406D960 (Solid)
+~ 386DAD0=0406DAD0
+DL-Pointer:	406DD20 (Solid)
+_ 386DF00=0406DF00
+DL-Pointer:	406E040 (Solid)
+, 3873200=04073200
+DL-Pointer:	40733B0 (Solid)
+: 3873600=04073600
+DL-Pointer:	40738D0 (Solid)
+
+0 386E200=0406E200
+DL-Pointer:	406E490 (Solid)
+1 386E800=0406E800
+DL-Pointer:	406EAC0 (Solid)
+2 386F000=0406F000
+DL-Pointer:	406F340 (Solid)
+3 386F800=0406F800
+DL-Pointer:	406FB40 (Solid)
+4 3870000=04070000
+DL-Pointer:	40702B0 (Solid)
+5 3870800=04070800
+DL-Pointer:	4070AF0 (Solid)
+6 3871000=04071000
+DL-Pointer:	4071470 (Solid)
+7 3871800=04071800
+DL-Pointer:	40719B0 (Solid)
+8 3872000=04072000
+DL-Pointer:	40726F0 (Solid)
+9 3872B00=04072B00
+DL-Pointer:	4072F10 (Solid)
+
+For question: 0x100 symbols + flags, 4 answers 0x40 symbols = 0x200 symbols for all, total 
