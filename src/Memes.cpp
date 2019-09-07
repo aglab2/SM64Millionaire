@@ -13,12 +13,19 @@ void Memes::Init()
 
 }
 
-char* DorriesText[] = { "DORRIE", "COMFYDORRIE", "YEETDORRIE", "HIGHDORRIE" };
+const char* DorriesText[] = { "RIGHTDORRIE"
+                            , "LEFTDORRIE"
+                            , "COMFYDORRIE"
+                            , "YEETDORRIE"
+                            , "HIGHDORRIE"
+                            , "CRAFTDORRIE"
+                            , "CRAFTW"
+                            , "AYY LMAO" };
 
 void Memes::Dorrie()
 {
     DORRIE_TIME += GetRNG() % 10;
-    if (DORRIE_TIME > 1000)
+    if (DORRIE_TIME > 3000)
     {
         DORRIE_TIME = 0;
         int idx = sizeof(DorriesText) / sizeof(DorriesText[0]);

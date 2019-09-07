@@ -3,6 +3,7 @@
 
 #include "GfxTable.h"
 #include "StringFit.hpp"
+#include "Colors.h"
 #include "RainbowColors.h"
 
 #include <ultra/gu.h>
@@ -40,20 +41,6 @@ static float symlen(const char* text)
 
 #define SEG_ADDR(x) ((int)x & 0x00FFFFFF)
 
-static u32 DarkColors[][4] = {
-    { 0x3E7E0000, 0x3E7E0000, 0x28282800, 0x00000000 },
-    { 0x78171700, 0x78171700, 0x28282800, 0x00000000 },
-    { 0x007F7F00, 0x007F7F00, 0x28282800, 0x00000000 },
-    { 0x7F7F7F00, 0x7F7F7F00, 0x28282800, 0x00000000 },
-};
-
-static u32 LightColors[][2] = {
-    { 0x7CFC0000, 0x7CFC0000 },
-    { 0xEF333300, 0xEF333300 },
-    { 0x00FFFF00, 0x00FFFF00 },
-    { 0xFFFFFF00, 0xFFFFFF00 },
-};
-
 Gfx* DynamicLetters::Draw(u32 sp50, struct GraphNode* node, u32 sp58)
 {
     if (sp50 == 0)
@@ -87,8 +74,16 @@ Gfx* DynamicLetters::Draw(u32 sp50, struct GraphNode* node, u32 sp58)
     Gfx *displayList = (Gfx*) alloc_display_list((dllen * 3 + 3) * sizeof(Gfx));
     Gfx *displayListIter = displayList;
     
-    gSPLight(displayListIter++, G_MV_L0, SEG_ADDR(DarkColors [TEXT_COLOR]));
-    gSPLight(displayListIter++, G_MV_L1, SEG_ADDR(LightColors[TEXT_COLOR]));
+    if (TEXT_COLOR == (u8)-1)
+    {
+        gSPLight(displayListIter++, G_MV_L0, SEG_ADDR(RainbowDarkColor));
+        gSPLight(displayListIter++, G_MV_L1, SEG_ADDR(RainbowLightColor));
+    }
+    else
+    {
+        gSPLight(displayListIter++, G_MV_L0, SEG_ADDR(DarkColors [TEXT_COLOR]));
+        gSPLight(displayListIter++, G_MV_L1, SEG_ADDR(LightColors[TEXT_COLOR]));
+    }
 
     float offsetY = 20.0f + (StringFit::SymbolHeight / 2.0f) * (float) linecount;
     const char* curLine = DYNLET_TEXT;

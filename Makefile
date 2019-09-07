@@ -2,7 +2,7 @@ SRC_DIR = src
 OBJ_DIR = obj
 
 # Alter these 4 variables according to your need
-CPP_FILES = main global MillCtl warp ColorPads NumbersInput NumbersWriter World DynamicLetters GfxTable StringFit Memes RainbowColors
+CPP_FILES = main global MillCtl warp ColorPads NumbersInput NumbersWriter World DynamicLetters GfxTable StringFit Memes Colors RainbowColors
 ROM = mill.z64
 INCLUDE_PATH = C:\n64chain\sm64
 LIBRARY_PATH = C:\n64chain\ld

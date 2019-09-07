@@ -8,11 +8,14 @@ u32 RainbowLightColor[2] = {
     0x00000000, 0x00000000
 };
 
-static char CurrentRainbowColor[] = {
-    0xFF, 0x01, 0x00
+constexpr int ColorShift = 0x20;
+constexpr int MaxColor = (0xFF / ColorShift) * ColorShift;
+
+static unsigned char CurrentRainbowColor[] = {
+    MaxColor, ColorShift, 0x00
 };
 
-static void SetDarkLight()
+static void SetColors()
 {
     int lightColor = CurrentRainbowColor[0] << 24 
                    | CurrentRainbowColor[1] << 16 
@@ -32,27 +35,27 @@ void NextRainbowColor()
 {
     int idxFull;
     for (idxFull = 0; idxFull < 3; idxFull++)
-        if (CurrentRainbowColor[idxFull] == 0xFF)
+        if (CurrentRainbowColor[idxFull] == MaxColor)
             break;
     
     if (CurrentRainbowColor[(idxFull + 1) % 3] != 0)
     {
-        CurrentRainbowColor[(idxFull + 1) % 3]++;
+        CurrentRainbowColor[(idxFull + 1) % 3] += ColorShift;
         // 2 things are at max color, swap out them
-        if (CurrentRainbowColor[(idxFull + 1) % 3] == 0xFF)
+        if (CurrentRainbowColor[(idxFull + 1) % 3] == MaxColor)
         {
-            CurrentRainbowColor[(idxFull + 2) % 3]++;
+            CurrentRainbowColor[(idxFull + 0) % 3] -= ColorShift;
         }
     }
     else
     {
-        CurrentRainbowColor[(idxFull + 2) % 3]--;  /*-1=+2*/
+        CurrentRainbowColor[(idxFull + 2) % 3] -= ColorShift;  /*-1=+2*/
         // The previous was ded, start coloring next one
         if (CurrentRainbowColor[(idxFull + 2) % 3] == 0x00)
         {
-            CurrentRainbowColor[(idxFull + 1) % 3]++;
+            CurrentRainbowColor[(idxFull + 1) % 3] += ColorShift;
         }
     }
 
-    SetDarkLight();
+    SetColors();
 }

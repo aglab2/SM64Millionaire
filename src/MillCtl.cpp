@@ -8,6 +8,8 @@
 #include "NumbersWriter.h"
 #include "World.h"
 #include "StringFit.hpp"
+#include "RainbowColors.h"
+#include "Colors.h"
 
 #pragma pack(push, 1)
 struct AnswerInfo
@@ -315,19 +317,29 @@ void MillCtl::Final()
     }
     
     PickedAngle(QUESTION_CORR);
+
     SetColorAnswer(pickedAnswer, 0xFF, 0x00, 0x00);
     SetColorAnswer(QUESTION_CORR, 0x00, 0xFF, 0x00);
 
+    DYNAMIC_LETTERS[pickedAnswer]->bparam1 = COLOR_RED;
+     
     if (pickedAnswer == QUESTION_CORR)
+    {
+        DYNAMIC_LETTERS[QUESTION_CORR]->bparam1 = COLOR_RAINBOW;
         SetWinMusic();
+    }
     else
-        SetMusic(MUSIC_LOSE); 
+    {
+        DYNAMIC_LETTERS[QUESTION_CORR]->bparam1 = COLOR_GREEN;
+        SetMusic(MUSIC_LOSE);
+    }
 
     action = RESULTS;
 }
 
 void MillCtl::Results()
 {
+    NextRainbowColor();
     bool wrongAnswer = pickedAnswer != QUESTION_CORR;
 
     FreezeMario();
