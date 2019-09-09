@@ -13,11 +13,12 @@ private:
     void SetMusic(int music);
     void SetWinMusic();
 
-    void PrintHint(const char* msg);
+    void PrintHint(const char* msg, int offsetY = 0);
     
     void PickedAngle(int pick);
 
     int GetWorld(int q);
+    int GetLevel(int q);
 
     // Normal states
     void Prepare();
@@ -25,6 +26,7 @@ private:
     void Picking();
     void Final();
     void Results();
+    void WalkAway();
 
 
     // Lifelines

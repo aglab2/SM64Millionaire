@@ -1,5 +1,6 @@
 #include "MillCtl.h"
 #include "NumbersWriter.h"
+#include "DeathRoom.h"
 #include "DynamicLetters.h"
 #include "Memes.h"
 
@@ -12,4 +13,5 @@ int _start[] = {
     REGISTER_BEHAVIOR (0x00040000, DynamicLetters) // 408018
     REGISTER_GEOLAYOUT(DynamicLetters)             // 408024
     REGISTER_BEHAVIOR (0x00040000, Memes)          // 40802C
+    REGISTER_BEHAVIOR (0x00040000, DeathRoom)      // 408038
 };

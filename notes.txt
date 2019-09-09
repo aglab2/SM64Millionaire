@@ -204,3 +204,8 @@ DL-Pointer:	40726F0 (Solid)
 DL-Pointer:	4072F10 (Solid)
 
 For question: 0x100 symbols + flags, 4 answers 0x40 symbols = 0x200 symbols for all, total 
+
+3874000=04074000
+DL-Pointer:	04074B70 (5)
+3875000=04075000
+DL-Pointer:	04075430 (1)

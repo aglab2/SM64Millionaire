@@ -1,0 +1,16 @@
+q7 = 2-0B=11
+q8 = 2-15=21
+q9 = 2-1F=31
+q10= 2-2A=41
+
+q12= 2-0B=11
+q13= 2-15=21
+q14= 2-1F=31
+
+epicwin
+final
+letsplay
+lose
+win
+timeout
+await

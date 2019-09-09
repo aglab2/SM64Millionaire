@@ -38,7 +38,7 @@ void FlashyScroll(int x_off, int y_off)
     int b3 = ptr[3];
 
     int x = ((b1 << 4) & 0xFF0) | ((b2 >> 4) & 0x00F);
-    int y = (b2 << 4) | b3;
+    int y = ((b2 << 4) & 0xF00) | b3;
 
     x += x_off;
     y += y_off;

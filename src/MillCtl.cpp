@@ -3,13 +3,14 @@
 #include "warp.h"
 #include "thirdparty.h"
 #include "ColorPads.h"
-#include "global.h"
 #include "NumbersInput.h"
 #include "NumbersWriter.h"
 #include "World.h"
 #include "StringFit.hpp"
 #include "RainbowColors.h"
 #include "Colors.h"
+#include "global.h"
+#include "Music.h"
 
 #pragma pack(push, 1)
 struct AnswerInfo
@@ -45,23 +46,23 @@ static constexpr int size(T(&)[sz])
     return sz;
 }
 
-static triplet CoatsPos[] = {
+static const triplet CoatsPos[] = {
     { -1193, 0, -1110 }, 
     { -446, 0, -1110 }, 
     { 446, 0, -1110 }, 
     { 1193, 0, -1110 },
 };
 
-struct triplet QuestionPos = { 0, 654, -717 };
+static const struct triplet QuestionPos = { 0, 654, -717 };
 
-struct triplet LettersPos[] = {
+static const struct triplet LettersPos[] = {
     { -1193, 190, -886 },
-    { -446, 190, -886 }, 
-    { 446, 190, -886 }, 
-    { 1193, 190, -886 },
+    { -446,  190, -886 }, 
+    { 446,   190, -886 }, 
+    { 1193,  190, -886 },
 };
 
-static int Collisions[] = { 0x7B, 0x15, 0x29, 0x30 };
+static const int Collisions[] = { 0x7B, 0x15, 0x29, 0x30 };
 
 enum LifeLines
 {
@@ -70,7 +71,7 @@ enum LifeLines
     LL_CALLFRIEND,
 };
 
-static int LifelinesCollision[]  = { 0x35, 0x36, 0x37 };
+static const int LifelinesCollision[]  = { 0x35, 0x36, 0x37 };
 
 enum Actions
 {
@@ -79,6 +80,7 @@ enum Actions
     PICKING,
     FINAL,
     RESULTS,
+    WALKAWAY,
 
     LIFELINES,
     FIFTYFIFTY = LIFELINES,
@@ -116,46 +118,44 @@ void MillCtl::SetMusic(int music)
 
 void MillCtl::SetGamingMusic()
 {
-    SetMusic(MUSIC_P1 + GetWorld(QUESTION_NUMBER));
+    int track = Music::GetGameMusic(GetWorld(QUESTION_NUMBER), 
+                                    GetLevel(QUESTION_NUMBER));
+    SetMusic(track);
 }
 
+// culprit :(
 void MillCtl::FixMusic()
 {
     SONG_LEN++;
-    if (SONG_ID == MUSIC_P1 && SONG_LEN > 3250)
+    if (SONG_ID == Music::MUSIC_P1)
     {
-        SetMusic(SONG_ID);
+        if (SONG_LEN > 3250)
+            SetMusic(SONG_ID);
     }
-    if (SONG_ID == MUSIC_P2 && SONG_LEN > 4700)
+    if (Music::MUSIC_P2 <= SONG_ID  && SONG_ID <= Music::MUSIC_P4_END)
     {
-        SetMusic(SONG_ID);
+        if (SONG_LEN > 4700)
+            SetMusic(SONG_ID);
     }
-    if (SONG_ID == MUSIC_P3 && SONG_LEN > 4700)
-    {
-        SetMusic(SONG_ID);
-    }
-    if (SONG_ID == MUSIC_P4 && SONG_LEN > 4700)
-    {
-        SetMusic(SONG_ID);
-    }
+
     //PrintInt(20, 20, "%d", SONG_LEN);
 }
 
 void MillCtl::SetWinMusic()
 {
-    if (QUESTION_NUMBER == 5 || QUESTION_NUMBER == 10 || QUESTION_NUMBER == 15)
-        SetMusic(MUSIC_EPICWIN);
-    else
-        SetMusic(MUSIC_WIN);
+    int track = Music::GetWinMusic(GetLevel(QUESTION_NUMBER));
+    SetMusic(track);
 }
 
-void MillCtl::PrintHint(const char* msg)
+void MillCtl::PrintHint(const char* msg, int offset)
 {
-    PrintXY(160, 20, msg);
+    PrintXY(160, 20 + offset, msg);
 }
 
 void MillCtl::Init()
 {
+    Question = QUESTION_NUMBER;
+
     SetCamera();
     for (int i = 0; i <= 3; i++)
         SetColorAnswer(i, 0xff, 0xff, 0xff);
@@ -218,7 +218,7 @@ void MillCtl::Prepare()
     else
     {
         if (timer == 0)
-            SetMusic(MUSIC_LETSPLAY);
+            SetMusic(Music::MUSIC_LETSPLAY);
 
         if (timer < 105)
             return;
@@ -244,6 +244,14 @@ int MillCtl::GetWorld(int q)
     if (q <= 10) return 1;
     if (q < 15)  return 2;
     return 3;
+}
+
+int MillCtl::GetLevel(int q)
+{
+    if (q == 15)
+        return 0;
+    
+    return (q - 1) % 5;
 }
 
 void MillCtl::Unveil()
@@ -286,7 +294,10 @@ void MillCtl::Picking()
                 pickedAnswer = i;
                 SetColorAnswer(pickedAnswer, 0xFF, 0x7F, 0x00);
                 if (QUESTION_NUMBER >= 5)
-                    SetMusic(MUSIC_FINAL);
+                {
+                    int track = Music::GetFinalMusic(GetLevel(QUESTION_NUMBER));
+                    SetMusic(track);
+                }
 
                 action = FINAL;
             }
@@ -299,9 +310,16 @@ void MillCtl::Picking()
             if (M64_CONTROLLER1_BUTTONS_PRESS & BUTTON_START)
             {
                 if (LIFELINES + i != FIFTYFIFTY)
-                    SetMusic(MUSIC_AWAIT);
+                    SetMusic(Music::MUSIC_AWAIT);
                 action = LIFELINES + i;
             }
+        }
+    
+    if (M64_MARIO_STRUCT->curr_collision_triangle->collision_type == 0)
+        if (M64_CONTROLLER1_BUTTONS_PRESS & BUTTON_L)
+        {
+            SetMusic(0);
+            action = WALKAWAY;
         }
 }
 
@@ -331,7 +349,8 @@ void MillCtl::Final()
     else
     {
         DYNAMIC_LETTERS[QUESTION_CORR]->bparam1 = COLOR_GREEN;
-        SetMusic(MUSIC_LOSE);
+        int track = Music::GetLoseMusic(GetLevel(QUESTION_NUMBER));
+        SetMusic(track);
     }
 
     action = RESULTS;
@@ -350,12 +369,32 @@ void MillCtl::Results()
     {
         if (wrongAnswer)
         {
+            State = MS_DEAD;
             SM64Health = 0;
         }
         else
         {
             TriggerWarp(72);
         }
+    }
+}
+
+void MillCtl::WalkAway()
+{
+    FreezeMario();
+    
+    PrintHint("Start to finish game", 20);
+    PrintHint("B to cancel");
+    if (M64_CONTROLLER1_BUTTONS_PRESS & BUTTON_START)
+    {
+        State = MS_QUIT;
+        TriggerWarp(69);
+    }
+    
+    if (M64_CONTROLLER1_BUTTONS_PRESS & BUTTON_B)
+    {
+        SetGamingMusic();
+        action = PICKING;
     }
 }
 
@@ -381,6 +420,7 @@ void MillCtl::FiftyFifty()
     }
 
     action = PICKING;
+    PlaySoundProperly(0x2439ff81);
     SetColorLifelines(FIFTYFIFTY - LIFELINES, 0x40, 0x40, 0x40);
 }
 
@@ -395,7 +435,7 @@ void MillCtl::Audience()
     PrintHint("Press R to start audience");
     if (M64_CONTROLLER1_BUTTONS_PRESS & BUTTON_R)
     {
-        SetMusic(MUSIC_AUDIENCE);
+        SetMusic(Music::MUSIC_TIMEOUT);
         action = AUDIENCE_PICKING;
     }
 }
@@ -404,7 +444,7 @@ void MillCtl::AudiencePicking()
 {
     if (timer > 30 * 25)
     {
-        SetMusic(MUSIC_AWAIT);
+        SetMusic(Music::MUSIC_AWAIT);
         action = AUDIENCE_PICKINGAFTER;
     }
 }
@@ -436,7 +476,7 @@ void MillCtl::CallFriend()
     PrintHint("Press R to start call");
     if (M64_CONTROLLER1_BUTTONS_PRESS & BUTTON_R)
     {
-        SetMusic(MUSIC_AUDIENCE);
+        SetMusic(Music::MUSIC_TIMEOUT);
         M64_MARIO_STRUCT->pos = pos;
         ParallelLakituAngle = 0;
         action = CALLFRIEND_CD;
@@ -477,6 +517,7 @@ void MillCtl::Step()
             World::SlowTremble(GetWorld(QUESTION_NUMBER), (QUESTION_NUMBER - 1) % 5, timer);
         break;
 
+        case WALKAWAY:
         case FINAL:
             break;
         case RESULTS:
@@ -484,10 +525,10 @@ void MillCtl::Step()
         bool wrongAnswer = pickedAnswer != QUESTION_CORR;
             if (!wrongAnswer)
             {
-                if (timer < 80)
+                World::Flashy();
+                if (timer < 100)
                 {
                     World::Tremble(GetWorld(QUESTION_NUMBER), (QUESTION_NUMBER - 1) % 5);
-                    World::Flashy();
                 }
                 else
                 {
@@ -495,6 +536,7 @@ void MillCtl::Step()
                 }
             }
         }
+        break;
         default:
             World::Wave(GetWorld(QUESTION_NUMBER), (QUESTION_NUMBER - 1) % 5, 20);
         break;
@@ -516,6 +558,9 @@ void MillCtl::Step()
         break;
         case RESULTS:
             Results();
+        break;
+        case WALKAWAY:
+            WalkAway();
         break;
         case FIFTYFIFTY:
             FiftyFifty();
