@@ -16,13 +16,12 @@ SECTIONS
     *(.rodata.*)
   }
   
+  .symtab   : { *(.symtab)   } 
+  .shstrtab : { *(.shstrtab) }
+  .strtab   : { *(.strtab)   }
+  
   /DISCARD/ :
   {
-	*(.MIPS.abiflags)
-	*(.gnu.attributes)
-	*(.mdebug.abi32)
-	*(.comment)
-	*(.pdr)
-	*(.reginfo)
+	*(*)
   }
 }

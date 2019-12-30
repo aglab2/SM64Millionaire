@@ -124,6 +124,9 @@ void MillCtl::SetGamingMusic()
 }
 
 // culprit :(
+
+static int Culprits[] = { 4700, 4450, 4200, 3950, 3750 };
+
 void MillCtl::FixMusic()
 {
     SONG_LEN++;
@@ -134,7 +137,7 @@ void MillCtl::FixMusic()
     }
     if (Music::MUSIC_P2 <= SONG_ID  && SONG_ID <= Music::MUSIC_P4_END)
     {
-        if (SONG_LEN > 4700)
+        if (SONG_LEN > Culprits[GetLevel(QUESTION_NUMBER)])
             SetMusic(SONG_ID);
     }
 
@@ -349,7 +352,7 @@ void MillCtl::Final()
     else
     {
         DYNAMIC_LETTERS[QUESTION_CORR]->bparam1 = COLOR_GREEN;
-        int track = Music::GetLoseMusic(GetLevel(QUESTION_NUMBER));
+        int track = Music::GetLoseMusic(GetWorld(QUESTION_NUMBER), GetLevel(QUESTION_NUMBER));
         SetMusic(track);
     }
 
@@ -374,6 +377,9 @@ void MillCtl::Results()
         }
         else
         {
+            if (QUESTION_NUMBER == 15)
+                State = MS_WIN;
+
             TriggerWarp(72);
         }
     }
@@ -526,7 +532,8 @@ void MillCtl::Step()
             if (!wrongAnswer)
             {
                 World::Flashy();
-                if (timer < 100)
+                int maxTime = GetLevel(QUESTION_NUMBER) == 4 ? 200 : 100;
+                if (timer < maxTime)
                 {
                     World::Tremble(GetWorld(QUESTION_NUMBER), (QUESTION_NUMBER - 1) % 5);
                 }

@@ -209,3 +209,22 @@ For question: 0x100 symbols + flags, 4 answers 0x40 symbols = 0x200 symbols for 
 DL-Pointer:	04074B70 (5)
 3875000=04075000
 DL-Pointer:	04075430 (1)
+
+blue
+3875A00=04075A00
+DL-Pointer:	04076700 (5)
+cyan
+3876A00=04076A00
+DL-Pointer:	04077700 (5)
+green
+3877A00=04077A00
+DL-Pointer:	04078700 (5)
+purple
+3878A00=04078A00
+DL-Pointer:	04079700 (5)
+red
+3879A00=04079A00
+DL-Pointer:	0407A700 (5)
+
+387AA00=0407AA00
+DL-Pointer:	0407B700 (5)

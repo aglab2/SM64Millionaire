@@ -21,15 +21,19 @@ int Music::GetFinalMusic(int level)
     return MUSIC_FINAL + level;
 }
 
-int Music::GetLoseMusic(int level)
+int Music::GetLoseMusic(int world, int level)
 {
+    if (world == 0)
+        return MUSIC_LOSE_NOOB;
+    if (world == 1 && level == 4)
+        return MUSIC_LOSE_10;
+    if (world == 3)
+        return MUSIC_LOSE_15;
+
     return MUSIC_LOSE + level;
 }
 
 int Music::GetWinMusic(int level)
 {
-    if (level == 4)
-        return MUSIC_EPICWIN;
-
     return MUSIC_WIN + level;
 }

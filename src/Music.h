@@ -53,10 +53,14 @@ namespace Music
         MUSIC_TIMEOUT,
         MUSIC_AWAIT,
         MUSIC_AUDIENCE,
+
+        MUSIC_LOSE_NOOB,
+        MUSIC_LOSE_10,
+        MUSIC_LOSE_15,
     };
 
     int GetGameMusic(int world, int level);
     int GetFinalMusic(int level);
-    int GetLoseMusic(int level);
+    int GetLoseMusic(int world, int level);
     int GetWinMusic(int level);
 };

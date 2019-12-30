@@ -1,3 +1,4 @@
+#define MODEL_PARTICLE 0xF6
 #define MODEL_AUDIENCE 0xF7
 #define MODEL_VEIL 0xFC
 #define MODEL_DYNTEXT 0xFE

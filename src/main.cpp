@@ -3,6 +3,7 @@
 #include "DeathRoom.h"
 #include "DynamicLetters.h"
 #include "Memes.h"
+#include "Fountain.h"
 
 #define REGISTER_BEHAVIOR(list, obj) list, 0x04000000, (int) obj::Behavior,
 #define REGISTER_GEOLAYOUT(obj) 0x02000000, (int) obj::Geolayout,
