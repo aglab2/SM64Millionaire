@@ -228,3 +228,9 @@ DL-Pointer:	0407A700 (5)
 
 387AA00=0407AA00
 DL-Pointer:	0407B700 (5)
+
+
+kappa 387ba00=0407ba00
+DL-Pointer:	407C120 (1)
+ksi 387c500=0407c500
+DL-Pointer:	407C910 (1)

@@ -9,6 +9,8 @@ static constexpr int size(T(&)[sz])
 }
 
 int LetterGfxs[128] = {
+    [1]   = 0x0407C120,
+    [2]   = 0x0407C910,
     ['A'] = 0x0404A2C0, 
     ['B'] = 0x0404B3D0,
     ['C'] = 0x0404C370,
@@ -102,6 +104,9 @@ int LetterGfxs[128] = {
 };
 
 float LetterSizes[128] = {
+    [1]  = 290,
+    [2]  = 60,
+
     ['A'] = 230, 
     ['B'] = 200,
     ['C'] = 220,

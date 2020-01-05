@@ -21,7 +21,8 @@ struct AnswerInfo
 
 struct QuestionInfo
 {
-    char question[254];
+    char question[253];
+    char musicOverride;
     char nofit;
     char correctAnswer;
     struct AnswerInfo answers[4];
@@ -118,8 +119,16 @@ void MillCtl::SetMusic(int music)
 
 void MillCtl::SetGamingMusic()
 {
-    int track = Music::GetGameMusic(GetWorld(QUESTION_NUMBER), 
+    int track = 0;
+    if (QUESTION_INFO->musicOverride)
+    {
+        track = QUESTION_INFO->musicOverride;
+    }
+    else
+    {
+        track = Music::GetGameMusic(GetWorld(QUESTION_NUMBER), 
                                     GetLevel(QUESTION_NUMBER));
+    }
     SetMusic(track);
 }
 
